@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICT Growth Operations Mentorship</title>
+    <!-- Load Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom config for extended colors and font -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'slate-200': '#e2e8f0',
+                        'slate-400': '#94a3b8',
+                        'slate-500': '#64748b',
+                        'slate-600': '#475569',
+                        'slate-700': '#334155',
+                        'slate-800': '#1e293b',
+                        'slate-900': '#0f172a',
+                        'zinc-900': '#18181b',
+                        'zinc-950': '#09090b',
+                        'emerald-500': '#10b981',
+                        'emerald-400': '#34d399',
+                        'red-500': '#ef4444',
+                        'green-500': '#22c55e',
+                        'blue-900': '#1e3a8a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Styling for the sticky navigation bar */
+        .scrolled-nav {
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(8px);
+            border-color: #1e293b; /* slate-800 */
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-black text-slate-200">
+
+    <div id="app-root">
+        <!-- Navigation -->
+        <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent py-6">
+            <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+                <div class="text-2xl font-bold tracking-tighter text-white">ICT<span class="text-slate-500">.</span></div>
+                
+                <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-400">
+                    <button onclick="scrollToSection('program')" class="hover:text-white transition-colors">The Program</button>
+                    <button onclick="scrollToSection('results')" class="hover:text-white transition-colors">Results</button>
+                    <button onclick="scrollToSection('faq')" class="hover:text-white transition-colors">FAQ</button>
+                    <button class="bg-white text-black px-6 py-2.5 font-bold hover:bg-slate-200 transition-colors rounded-sm">
+                        Book a Call
+                    </button>
+                </div>
+
+                <button id="mobile-menu-button" class="md:hidden text-white">
+                    <!-- Menu icon (using simple SVG for single file mandate) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden fixed inset-0 z-40 bg-black pt-24 px-6 md:hidden">
+            <div class="flex flex-col space-y-6 text-xl font-medium text-slate-400">
+                <button onclick="scrollToSection('program')" class="block w-full text-left">The Program</button>
+                <button onclick="scrollToSection('results')" class="block w-full text-left">Results</button>
+                <button class="bg-white text-black px-6 py-3 font-bold text-center mt-8">Book a Call</button>
+            </div>
+        </div>
+
+        <!-- Hero Section -->
+        <header class="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 border-b border-slate-900 overflow-hidden">
+            <!-- Background Elements -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-blue-900/10 blur-[120px] rounded-full pointer-events-none"></div>
+            
+            <div class="max-w-4xl mx-auto text-center relative z-10">
+                <h1 class="text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-6">
+                    Master Growth Operations. <br class="hidden md:block" />
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-slate-200 to-slate-500">
+                        Build a $10k/Month Career.
+                    </span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                    Stop chasing saturated side hustles. Learn the technical skill that online creators are desperate to pay for. No fluff. Real systems. Direct mentorship.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <button class="w-full sm:w-auto bg-white text-black px-8 py-4 font-bold text-lg hover:bg-slate-200 transition-all flex items-center justify-center group rounded-sm">
+                        Apply for Mentorship
+                        <span class="ml-2 transition-transform group-hover:translate-x-1">→</span>
+                    </button>
+                    <button onclick="scrollToSection('program')" class="w-full sm:w-auto px-8 py-4 font-medium text-slate-300 hover:text-white border border-slate-800 hover:border-slate-600 transition-all rounded-sm">
+                        How It Works
+                    </button>
+                </div>
+
+                <p class="mt-6 text-xs text-slate-600 uppercase tracking-widest font-semibold">
+                    Limited spots available per cohort
+                </p>
+            </div>
+        </header>
+
+        <!-- Reality Check / Qualification -->
+        <section class="py-24 bg-zinc-950 border-b border-slate-900">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-12 md:gap-24 items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold text-white mb-6">This is NOT for everyone.</h2>
+                        <p class="text-slate-400 mb-8 leading-relaxed">
+                            Most people want "easy money." They want a button they can push to get rich without work. If that's you, close this page. ICT is an elite mentorship for people ready to build a real career.
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-4">
+                                <span class="w-6 h-6 text-red-500 flex-shrink-0 mt-1">✕</span>
+                                <div>
+                                    <h4 class="text-white font-semibold">NOT for Get-Rich-Quick Seekers</h4>
+                                    <p class="text-sm text-slate-500">We prioritize skill acquisition over hype.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <span class="w-6 h-6 text-red-500 flex-shrink-0 mt-1">✕</span>
+                                <div>
+                                    <h4 class="text-white font-semibold">NOT for Passive Observers</h4>
+                                    <p class="text-sm text-slate-500">Success here requires execution, not just watching videos.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900/30 p-8 border border-slate-800 rounded-sm">
+                        <h3 class="text-xl font-bold text-white mb-6 border-b border-slate-800 pb-4">Who We Are Looking For</h3>
+                        <div class="space-y-6">
+                            <!-- Items translated from React array -->
+                            <div class="flex items-start space-x-3">
+                                <span class="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5">✓</span>
+                                <p class="text-slate-300 text-sm font-medium">You are willing to work 2-4 hours a day to build a system.</p>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <span class="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5">✓</span>
+                                <p class="text-slate-300 text-sm font-medium">You are tired of inconsistent income and want a high-ticket skill.</p>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <span class="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5">✓</span>
+                                <p class="text-slate-300 text-sm font-medium">You want to work behind the scenes for 6-7 figure creators.</p>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <span class="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5">✓</span>
+                                <p class="text-slate-300 text-sm font-medium">You value direct feedback over pre-recorded fluff.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What is Growth Ops? -->
+        <section class="py-24 px-6 bg-black relative">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">The Growth Operator Opportunity</h2>
+                <p class="text-slate-400 text-lg">
+                    Creators are great at making content. They are terrible at monetization, systems, and backend operations. <br class="hidden md:block"/>
+                    That is where you come in.
+                </p>
+            </div>
+
+            <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-6">
+                <div class="bg-zinc-900 p-8 rounded-sm border border-zinc-800 hover:border-zinc-700 transition-colors">
+                    <div class="w-12 h-12 bg-zinc-800 flex items-center justify-center rounded-sm mb-6 text-white">📊</div>
+                    <h3 class="text-xl font-bold text-white mb-3">Optimize Revenue</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        You don't need to post content. You build the funnels, email sequences, and systems that turn followers into dollars.
+                    </p>
+                </div>
+                <div class="bg-zinc-900 p-8 rounded-sm border border-zinc-800 hover:border-zinc-700 transition-colors">
+                    <div class="w-12 h-12 bg-zinc-800 flex items-center justify-center rounded-sm mb-6 text-white">👥</div>
+                    <h3 class="text-xl font-bold text-white mb-3">Manage Community</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Creators are overwhelmed. You step in to manage their paid communities, ensuring retention and high satisfaction.
+                    </p>
+                </div>
+                <div class="bg-zinc-900 p-8 rounded-sm border border-zinc-800 hover:border-zinc-700 transition-colors">
+                    <div class="w-12 h-12 bg-zinc-800 flex items-center justify-center rounded-sm mb-6 text-white">🛡️</div>
+                    <h3 class="text-xl font-bold text-white mb-3">Partner, Don't Serve</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Unlike a freelancer who gets paid hourly, a Growth Operator partners on profit share. When they win, you win big.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Program Offer -->
+        <section id="program" class="py-24 px-6 bg-zinc-950 border-y border-zinc-900">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid lg:grid-cols-12 gap-12">
+                    
+                    <!-- Left: Copy -->
+                    <div class="lg:col-span-5">
+                        <span class="text-emerald-500 font-bold tracking-wider uppercase text-sm">The ICT Mentorship</span>
+                        <h2 class="text-4xl font-bold text-white mt-4 mb-6">Everything You Need To scale To $10k/Month.</h2>
+                        <p class="text-slate-400 mb-8">
+                            We don't just dump a course on you and wish you luck. ICT is a hands-on, high-intensity mentorship designed to get you results.
+                        </p>
+                        <button class="bg-white text-black px-8 py-4 font-bold rounded-sm w-full md:w-auto hover:bg-slate-200 transition-colors">
+                            See If You Qualify
+                        </button>
+                    </div>
+
+                    <!-- Right: The Stack -->
+                    <div class="lg:col-span-7 grid sm:grid-cols-2 gap-4">
+                        
+                        <!-- Feature 1 -->
+                        <div class="bg-black border border-zinc-800 p-6 rounded-sm">
+                            <span class="text-white mb-4 block text-2xl">🎯</span>
+                            <h4 class="text-white font-bold text-lg mb-2">6-Module Core Curriculum</h4>
+                            <p class="text-slate-400 text-sm">Step-by-step training from zero to your first high-ticket client. No guesswork.</p>
+                        </div>
+
+                        <!-- Feature 2 -->
+                        <div class="bg-gradient-to-br from-zinc-900 to-black border border-zinc-700 p-6 rounded-sm shadow-xl relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-2 opacity-10 text-8xl">📞</div>
+                            <span class="text-emerald-400 mb-4 block text-2xl">⚡</span>
+                            <h4 class="text-white font-bold text-lg mb-2">5-6 Live Calls Per Week</h4>
+                            <p class="text-slate-400 text-sm">Q&A, implementation workshops, and hot seats. We are live with you every single day.</p>
+                        </div>
+
+                        <!-- Feature 3 -->
+                        <div class="bg-black border border-zinc-800 p-6 rounded-sm">
+                            <span class="text-white mb-4 block text-2xl">👨‍🏫</span>
+                            <h4 class="text-white font-bold text-lg mb-2">1-on-1 Mentorship</h4>
+                            <p class="text-slate-400 text-sm">Direct access to 7-figure operators who review your work and guide your strategy.</p>
+                        </div>
+
+                        <!-- Feature 4 -->
+                        <div class="bg-black border border-zinc-800 p-6 rounded-sm">
+                            <span class="text-white mb-4 block text-2xl">🤝</span>
+                            <h4 class="text-white font-bold text-lg mb-2">Private Operator Community</h4>
+                            <p class="text-slate-400 text-sm">Network with other serious operators. Iron sharpens iron.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof -->
+        <section id="results" class="py-24 px-6 bg-black">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Results Speak Louder.</h2>
+                    <p class="text-slate-400">Our students are closing deals and operating real businesses.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Review 1 -->
+                    <div class="border border-zinc-800 bg-zinc-900/50 p-8 rounded-sm">
+                        <div class="flex items-center space-x-2 mb-4">
+                            <div class="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                            <span class="text-xs text-emerald-500 font-bold uppercase">Verified Student</span>
+                        </div>
+                        <p class="text-slate-200 mb-6 italic">
+                            "I was bouncing between dropshipping and copywriting for 2 years with zero results. 6 weeks into ICT, I closed my first creator client for $3k/month plus 20% rev share. The systems actually work."
+                        </p>
+                        <div class="font-bold text-white">Michael R.</div>
+                        <div class="text-xs text-slate-500">Former Retail Manager</div>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="border border-zinc-800 bg-zinc-900/50 p-8 rounded-sm">
+                        <div class="flex items-center space-x-2 mb-4">
+                            <div class="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                            <span class="text-xs text-emerald-500 font-bold uppercase">Verified Student</span>
+                        </div>
+                        <p class="text-slate-200 mb-6 italic">
+                            "The live calls are the game changer. Being able to ask a specific question about a client issue and get an answer immediately saved me weeks of headache. Hit my first $10k month in December."
+                        </p>
+                        <div class="font-bold text-white">Sarah Jenkins</div>
+                        <div class="text-xs text-slate-500">Growth Operator</div>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="border border-zinc-800 bg-zinc-900/50 p-8 rounded-sm">
+                        <div class="flex items-center space-x-2 mb-4">
+                            <div class="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                            <span class="text-xs text-emerald-500 font-bold uppercase">Verified Student</span>
+                        </div>
+                        <p class="text-slate-200 mb-6 italic">
+                            "Straight to the point. No fluff. Just 'do this, then do that.' If you are disciplined and follow the roadmap, it is impossible not to see results."
+                        </p>
+                        <div class="font-bold text-white">David K.</div>
+                        <div class="text-xs text-slate-500">University Student</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-24 px-6 bg-zinc-950 relative overflow-hidden">
+            <!-- Decorative Grid -->
+            <div class="absolute inset-0 opacity-10" 
+                 style="background-image: linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px); background-size: 40px 40px;">
+            </div>
+
+            <div class="max-w-3xl mx-auto text-center relative z-10">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-8">Ready to Build Something Real?</h2>
+                <p class="text-xl text-slate-400 mb-10">
+                    We only work with people who are serious. We don't want your money if you aren't going to do the work. If you are ready to operate, let's talk.
+                </p>
+                
+                <div class="flex flex-col items-center space-y-4">
+                    <button class="bg-white text-black text-xl px-12 py-5 font-bold hover:bg-slate-200 transition-all rounded-sm w-full md:w-auto">
+                        Book Your Strategy Call
+                    </button>
+                    <p class="text-sm text-slate-600">
+                        No pressure. No hard selling. Just a conversation to see if you're a fit.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-12 px-6 border-t border-zinc-900 bg-black text-center md:text-left">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm">
+                <div class="mb-4 md:mb-0">
+                    <span class="text-white font-bold text-lg mr-2">ICT</span> 
+                    © 2024 Growth Operations Mentorship.
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Contact Support</a>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+
+        /**
+         * Scrolls the page smoothly to a given section ID and closes the mobile menu.
+         * @param {string} id - The HTML ID of the section to scroll to.
+         */
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+            // Close mobile menu if open
+            if (!mobileMenu.classList.contains('hidden')) {
+                toggleMobileMenu();
+            }
+        }
+
+        /**
+         * Toggles the visibility of the mobile menu.
+         */
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuButton.querySelector('svg');
+            
+            // Update the icon to X or Menu (simplified via placeholder text/SVG attributes)
+            if (mobileMenu.classList.contains('hidden')) {
+                // Show Menu Icon
+                mobileMenuButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
+            } else {
+                // Show X Icon
+                mobileMenuButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+            }
+        }
+
+        // Event listener for mobile menu button
+        mobileMenuButton.addEventListener('click', toggleMobileMenu);
+
+        // Handle scroll effects for navbar
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled-nav');
+                navbar.classList.remove('bg-transparent', 'border-transparent', 'py-6');
+                navbar.classList.add('bg-black/90', 'backdrop-blur-md', 'border-slate-800', 'py-4');
+            } else {
+                navbar.classList.remove('scrolled-nav', 'bg-black/90', 'backdrop-blur-md', 'border-slate-800', 'py-4');
+                navbar.classList.add('bg-transparent', 'border-transparent', 'py-6');
+            }
+        });
+    </script>
+</body>
+</html>
